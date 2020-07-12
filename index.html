@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ee8c4f91b88b4a8"></script>
+	<title>Magic Hat</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="/magic_hat/index.html">The Magic Hat</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/magic_hat/index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/magic_hat/houseInfo.html">Hogwart Houses</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+	<!-- 팝업뜰때 배경 -->
+    <div id="mask"></div>
+
+    <!--Popup Start -->
+    <div id="layerbox" class="layerpop" style="width: 90%; height: 400px; background: #1d1f20;">
+        <article class="layerpop_area">
+        <a href="javascript:popupClose();" class="layerpop_close"
+            id="layerbox_close"></a> <br>
+        <div class="content">
+			Welcome To Magic Hat!<br/>
+			You are a:<br><br>
+			<div class="d-flex justify-content-center">
+				<a class="gender_btn mr-5" href="javascript:popupClose('boy')">Boy</a>
+				<a class="gender_btn ml-4 mr-4" href="javascript:popupClose('girl')">Girl</a>
+			</div>
+        </div>
+        </article>
+    </div>
+    <!--Popup End -->
+
+    <section class="section container">
+        <h1 class="title">A.I. Magic Hat Of Hogwart</h1>
+        <h2 class="subtitle mb-5">Which Hogwart House Do I Belong to?</h2>
+		<h3 class="subtitle">얼굴 이미지로 배정받아보는<br> 호그와트 기숙사</h2>
+    </section>
+    </div>
+    <div class="content container mt-5">
+        <img class="obrazek2 d-flex justify-content-center" src="https://i.ya-webdesign.com/images/hats-drawing-harry-potter.png">
+        <img class="preview img-wrapper file-upload-image" id="face-image" src="#" alt=""></img>
+        <div class="file-upload-wrapper">
+            <input type="file" name="file" class="file-upload-native" onchange="readURL(this);" accept="image/*" />
+            <input type="text" disabled placeholder="Click here to show me your face" class="file-upload-text" />
+        </div>
+		<div class="loading-container" style="display:none;">
+			<div class="loading"></div>
+			<div id="loading-text">Sorting</div>
+		</div>
+		<div class="resultSec" style="display:none;">
+			<div class="resultMsg mb-3"></div>
+			<a class="more_link mb-3" href="/magic_hat/houseInfo.html">> 기숙사별 상세 정보 보기</a>
+			<div class="resultImg"></div>
+			<div id="label-container"></div>
+		</div>
+		<div class="chart-wrap">
+		  <div id="dashboard-stats" class="chart bars-horizontal brand-primary">
+		  </div>
+		</div>
+    </div>
+
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <div class="addthis_inline_share_toolbox container mt-5"></div>
+    <div id="disqus_thread" class="container"></div>
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+        /*
+        var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        */
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document,
+                s = d.createElement('script');
+            s.src = 'https://themagichat.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the
+        <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+    </noscript>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+	<script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="./js/common.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
+    <script type="text/javascript">
+        // More API functions here:
+        // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
+        // the link to your model provided by Teachable Machine export panel
+        var URL = "https://teachablemachine.withgoogle.com/models/Qenjz9htB/";
+        let model, webcam, labelContainer, maxPredictions;
+		var loader = $('div.loading-container');
+		var resultSec = $('div.resultSec');
+		var retryBtn = $('div.file-upload-wrapper');
+		var chartEl = $('#dashboard-stats');
+        // Load the image model and setup the webcam
+        async function init() {
+            const modelURL = URL + "model.json";
+            const metadataURL = URL + "metadata.json";
+			chartEl.html('');
+			loader.show();
+			resultSec.hide();
+			retryBtn.hide();
+            // load the model and metadata
+            // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
+            // or files from your local hard drive
+            // Note: the pose library adds "tmImage" object to your window (window.tmImage)
+            model = await tmImage.load(modelURL, metadataURL);
+            maxPredictions = model.getTotalClasses();
+            labelContainer = document.getElementById("label-container");
+            for (let i = 0; i < maxPredictions; i++) { // and class labels
+                labelContainer.appendChild(document.createElement("div"));
+            }
+        }
+        // run the webcam image through the image model
+        async function predict() {
+            // predict can take in an image, video or canvas html element
+            var image = document.getElementById("face-image");
+			var resultImgDiv = $('.resultImg');
+            const prediction = await model.predict(image, false);
+			prediction[0].className = "Gryffindor";
+			prediction[1].className = "Slytherin";
+			prediction[2].className = "Ravenclaw";
+			prediction[3].className = "Hufflepuff";
+            prediction.sort((a, b) => parseFloat(b.probability) - parseFloat(a.probability));
+			loader.hide();
+			resultSec.show();
+			retryBtn.show();
+            var resultMsg;
+            switch (prediction[0].className) {
+                case "Gryffindor":
+                    resultMsg = '<h3>You belong to Gryffindor!</h3><br> "용기있고 대담하며, 기사도 정신을 지니고 정의를 추구하는<br> 당신의 이미지는 그리핀도르에 어울려보입니다."';
+					$(resultImgDiv).css({"background":"url(img/gryffindor.png)", 'background-repeat' : 'no-repeat', 'background-size' : 'contain'});
+                    break;
+                case "Slytherin":
+                    resultMsg = '<h3>You belong to Slytherin!</h3><br> "교활하고 야망이 있으며, 권력과 순수혈통을 추구하는<br> 당신의 이미지는 슬리데린에 어울려보입니다."';
+					$(resultImgDiv).css({"background":"url(img/slytherin.png)", 'background-repeat' : 'no-repeat', 'background-size' : 'contain'});
+                    break;
+                case "Ravenclaw":
+                    resultMsg = '<h3>You belong to Ravenclaw!</h3><br> "지혜롭고 현명하며, 사려깊고 독창성을 추구하는<br> 당신의 이미지는 래번클로에 어울려보입니다."';
+					$(resultImgDiv).css({"background":"url(img/ravenclaw.png)", 'background-repeat' : 'no-repeat', 'background-size' : 'contain'});
+                    break;
+                case "Hufflepuff":
+                    resultMsg = '<h3>You belong to Hufflepuff!</h3><br> "정직하고 성실하며, 넓은 관용을 지니고 공평함을 추구하는<br> 당신의 이미지는 후플푸프에 어울려보입니다."';
+					$(resultImgDiv).css({"background":"url(img/hufflepuff.png)", 'background-repeat' : 'no-repeat', 'background-size' : 'contain'});
+                    break;
+            }
+            $('.resultMsg').html(resultMsg);
+            for (let i = 0; i < maxPredictions; i++) {
+				var houseRow = '<div class="row d-flex justify-content-center"><span class="label">' + prediction[i].className + '</span><div class="bar-wrap ' + prediction[i].className + '"><div class="bar" data-value="' + (prediction[i].probability*100).toFixed(2) + '"></div></div><span class="number">'+ (prediction[i].probability*100).toFixed(2) +'</span></div>';
+				chartEl.append(houseRow);
+            }
+			generateBarGraph('#dashboard-stats');
+        }
+    </script>
+</body>
+
+</html>
