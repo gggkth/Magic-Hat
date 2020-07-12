@@ -1,0 +1,5 @@
+User-agent: *
+Allow:/
+Sitemap: https://magic-hat.ml/sitemap.xml
+Sitemap: https://www.magic-hat.ml/sitemap.xml
+Sitemap: https://magic-hat.netlify.app/sitemap.xml
