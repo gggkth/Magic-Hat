@@ -106,7 +106,12 @@ a.gender_btn {
 	height: 30px;
 	margin: 25px auto;
 	border-radius: 0px;
-	border-bottom: 1px dashed rgba(33, 122, 105, 1);
+	border: 1px dashed rgba(33, 122, 105, 1);
+	background-color: #545454;
+}
+
+.file-upload-wrapper.lower-wrapper {
+	margin: 10px auto;
 }
 
 .file-upload-native,
@@ -185,6 +190,18 @@ input[type="file"]::-webkit-file-upload-button {
     line-height: 1.53;
     text-align: center;
     color: #9e9e9e;
+}
+
+.gender-btn {
+	font-size: 15px;
+}
+
+.gender-btn.boy.active {
+	background-color: #043c73 !important;
+}
+
+.gender-btn.girl.active {
+	background-color: #610c0c !important;
 }
 
 @media screen and (max-width: 600px) {

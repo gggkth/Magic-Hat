@@ -1,7 +1,5 @@
 $(function() {
 	$(window).on('load', function(event) {
-		popupOpen();
-		wrapWindowByMask();
 		generateBarGraph('#dashboard-stats');
 	  });
 	
@@ -92,6 +90,14 @@ function popupOpen() {
 function popupClose(gender) {
 	$('#layerbox').fadeOut(500);
 	$('#mask').hide();
+	if(gender == 'boy') {
+		URL = "https://teachablemachine.withgoogle.com/models/Qenjz9htB/";
+	} else {
+		URL = "https://teachablemachine.withgoogle.com/models/dZHQ0tepM/";
+	}
+}
+
+function pickGender(gender) {
 	if(gender == 'boy') {
 		URL = "https://teachablemachine.withgoogle.com/models/Qenjz9htB/";
 	} else {

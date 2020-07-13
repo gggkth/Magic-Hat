@@ -37,36 +37,28 @@
             </ul>
         </div>
     </nav>
-	<!-- 팝업뜰때 배경 -->
-    <div id="mask"></div>
-
-    <!--Popup Start -->
-    <div id="layerbox" class="layerpop" style="width: 90%; height: 50%; background: #1d1f20;">
-        <article class="layerpop_area">
-        <a href="javascript:popupClose();" class="layerpop_close"
-            id="layerbox_close"></a> <br>
-        <div class="content">
-			Welcome To Magic Hat!<br/>
-			You are a:<br><br>
-			<div class="d-flex justify-content-center">
-				<a class="gender_btn mr-5" href="javascript:popupClose('boy')">Boy</a>
-				<a class="gender_btn ml-4 mr-4" href="javascript:popupClose('girl')">Girl</a>
-			</div>
-        </div>
-        </article>
-    </div>
-    <!--Popup End -->
 
     <section class="section container">
         <h1 class="title">A.I. Magic Hat Of Hogwart</h1>
         <h2 class="subtitle mb-5">Which Hogwart House Do I Belong to?</h2>
-		<h3 class="subtitle">얼굴 이미지로 배정받아보는<br> 호그와트 기숙사</h2>
+		<h3 class="subtitle mb-5">얼굴 이미지로 배정받아보는<br> 호그와트 기숙사</h2>
+		<div class="gender_toggle d-flex justify-content-center">
+			<span class="mr-4 gender-btn">You are a: </span>
+			<div class="btn-group btn-group-toggle" data-toggle="buttons">
+			  <label class="btn btn-secondary gender-btn boy active">
+				<input type="radio" name="options" onclick="javascript:pickGender('boy')" checked> Boy
+			  </label>
+			  <label class="btn btn-secondary gender-btn girl">
+				<input type="radio" name="options" onclick="javascript:pickGender('girl')"> Girl
+			  </label>
+			</div>
+		</div>
     </section>
     </div>
     <div class="content container mt-5">
         <img class="obrazek2 d-flex justify-content-center" src="img/hat.png">
         <img class="preview img-wrapper file-upload-image" id="face-image" src="#" alt=""></img>
-        <div class="file-upload-wrapper">
+        <div class="file-upload-wrapper upper-wrapper">
             <input type="file" name="file" class="file-upload-native" onchange="readURL(this);" accept="image/*" />
             <input type="text" disabled placeholder="Click here to show me your face" class="file-upload-text" />
         </div>
@@ -84,6 +76,10 @@
 		  <div id="dashboard-stats" class="chart bars-horizontal brand-primary">
 		  </div>
 		</div>
+		<div class="file-upload-wrapper lower-wrapper" style="display:none;">
+            <input type="file" name="file" class="file-upload-native" onchange="readURL(this);" accept="image/*" />
+            <input type="text" disabled placeholder="Try with other face" class="file-upload-text" />
+        </div>
     </div>
 
     <!-- Go to www.addthis.com/dashboard to customize your tools -->
@@ -125,16 +121,18 @@
         let model, webcam, labelContainer, maxPredictions;
 		var loader = $('div.loading-container');
 		var resultSec = $('div.resultSec');
-		var retryBtn = $('div.file-upload-wrapper');
+		var upperWrapper = $('div.upper-wrapper');
+		var lowerWrapper = $('div.lower-wrapper');
 		var chartEl = $('#dashboard-stats');
         // Load the image model and setup the webcam
         async function init() {
             const modelURL = URL + "model.json";
             const metadataURL = URL + "metadata.json";
+			lowerWrapper.hide();
 			chartEl.html('');
 			loader.show();
 			resultSec.hide();
-			retryBtn.hide();
+			upperWrapper.hide();
             // load the model and metadata
             // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
             // or files from your local hard drive
@@ -159,7 +157,7 @@
             prediction.sort((a, b) => parseFloat(b.probability) - parseFloat(a.probability));
 			loader.hide();
 			resultSec.show();
-			retryBtn.show();
+			lowerWrapper.show();
             var resultMsg;
             switch (prediction[0].className) {
                 case "Gryffindor":
