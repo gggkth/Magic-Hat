@@ -379,6 +379,10 @@ body {background: #333333;}
 	width: 100px;
 }
 
+.ad-banner {
+	width: 320px;
+	margin: 0 auto;
+}
 
 /* Chart CSS */
 
