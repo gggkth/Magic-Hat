@@ -150,6 +150,10 @@ input[type="file"]::-webkit-file-upload-button {
 		background-color: transparent;
 }
 
+input.file-upload-text::placeholder {
+	color: white;
+}
+
 .file-upload-native {
 		z-index: 15;
 		opacity: 0;
