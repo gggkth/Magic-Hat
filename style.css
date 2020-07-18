@@ -140,6 +140,7 @@ input[type="file"]::-webkit-file-upload-button {
 		padding: 5px 15px 8px;
 		overflow: hidden;
 		font-size: 14px;
+		color: white;
         font-family: Times New Roman;
 		line-height: 1.4;
 		cursor: pointer;
@@ -148,10 +149,6 @@ input[type="file"]::-webkit-file-upload-button {
 		text-overflow: ellipsis;
 		border: 0;
 		background-color: transparent;
-}
-
-input.file-upload-text::placeholder {
-	color: white;
 }
 
 .file-upload-native {

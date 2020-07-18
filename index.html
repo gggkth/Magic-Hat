@@ -62,7 +62,7 @@
         <img class="preview img-wrapper file-upload-image" id="face-image" src="#" alt="업로드창"></img>
         <div class="file-upload-wrapper upper-wrapper">
             <input type="file" name="file" class="file-upload-native" onchange="readURL(this);" accept="image/*" />
-            <input type="text" disabled placeholder="Click here to show me your face" class="file-upload-text" />
+			<div class="file-upload-text">Click here to show me your face</div>
         </div>
 		<div class="loading-container" style="display:none;">
 			<div class="loading"></div>
@@ -80,7 +80,7 @@
 		</div>
 		<div class="file-upload-wrapper lower-wrapper" style="display:none;">
             <input type="file" name="file" class="file-upload-native" onchange="readURL(this);" accept="image/*" />
-            <input type="text" disabled placeholder="Try with other face" class="file-upload-text" />
+			<div class="file-upload-text">Try again with other face</div>
         </div>
     </div>
 
